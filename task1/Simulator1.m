@@ -14,7 +14,7 @@ function [PL , APD , MPD , TT] = Simulator1(lambda,C,f,P)
 ARRIVAL= 0;       % Arrival of a packet            
 DEPARTURE= 1;     % Departure of a packet
 
-%State variables:
+% %State variables:
 STATE = 0;          % 0 - connection free; 1 - connection bysy
 QUEUEOCCUPATION= 0; % Occupation of the queue (in Bytes)
 QUEUE= [];          % Size and arriving time instant of each packet in the queue

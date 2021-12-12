@@ -33,30 +33,33 @@ av_pktd_term = zeros(bwsize,2);
 for it = 1:bwsize
     av_pktd_term(it,:) = [media(:, 2, it), term(:, 2,it)]; 
 end
-
+fprintf("bri")
 av_pktd_term %  
 
 %%
-dados = zeros(1, bwsize); 
-derr = zeros(1, bwsize);
+dados   = zeros(1, bwsize);   
+err = zeros(1, bwsize); 
 
 for it2 = 1:bwsize
     dados(1, it2) = av_pktd_term(it2, 1);
-    derr(1, it2) = av_pktd_term(it2, 2);
-end
+    err(1, it2) = av_pktd_term(it2, 2);  
+end 
 
-x = 1:bwsize; 
-figure("Name", "BRO")
-bd = bar(x, ddados);
-%hold on
-figure
-bl = bar(x, ldados);
+dados
 
-%hold on
-%er = errorbar(x, dados, err);
-%er.Color = [0 0 0];
-%er.LineStyle = 'none'; 
-%hold off
+x = 1:bwsize;  
+figure("Name", "Average Packet Delay")
+bd = bar(x, dados);
+xlabel('Link bandwidth (Mbps)')  
+set(gca,'xticklabel',C) 
+ylabel('Avg. Packet Delay (ms)')
+
+hold on
+er = errorbar(x, dados, err);  
+er.Color = [0 0 0];
+er.LineStyle = 'none'; 
+hold off     
+
 
 
 
