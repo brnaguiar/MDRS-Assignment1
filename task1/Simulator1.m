@@ -7,7 +7,7 @@ function [PL , APD , MPD , TT] = Simulator1(lambda,C,f,P)
 % OUTPUT PARAMETERS:
 %  PL   - packet loss (%)
 %  APD  - average packet delay (milliseconds)
-%  MPD  - maximum packet delay (milliseconds)
+%  MPD  - maximum packet delay (milliseconds) 
 %  TT   - transmitted throughput (Mbps)
 
 %Events:
@@ -69,7 +69,7 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
                 EventList = [EventList; DEPARTURE, Clock + 8*QUEUE(1,1)/(C*10^6), QUEUE(1,1), QUEUE(1,2)];
                 QUEUEOCCUPATION= QUEUEOCCUPATION - QUEUE(1,1);
                 QUEUE(1,:)= [];
-            else
+            else  
                 STATE= 0;
             end
     end

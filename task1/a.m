@@ -44,13 +44,17 @@ for it2 = 1:lambda_len
 end
 
 x = 1:lambda_len;
+figure('Name', 'Average Packet Delay')
 bar(x, dados)
+xlabel('Packet rate (p/s)')
+set(gca,'xticklabel',lambda) 
+ylabel('Avg. Packet Delay (ms)')
 
 hold on
 er = errorbar(x, dados, err);
 er.Color = [0 0 0];
 er.LineStyle = 'none'; 
-hold off
+hold off 
 
 
 

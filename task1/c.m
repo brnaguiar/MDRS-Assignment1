@@ -37,19 +37,15 @@ end
 av_pktd_term %  
 
 %%
-ddados = zeros(1, qsize); 
-derr = zeros(1, qsize);
-ldados = zeros(1, qsize);
-lerr = zeros(1, qsize);
+dados = zeros(1, bwsize); 
+derr = zeros(1, bwsize);
 
-for it2 = 1:qsize
-    ddados(1, it2) = av_pktd_term(it2, 1);
+for it2 = 1:bwsize
+    dados(1, it2) = av_pktd_term(it2, 1);
     derr(1, it2) = av_pktd_term(it2, 2);
-    ldados(1, it2) = av_pktl_term(it2, 1);
-    lerr(1, it2) = av_pktl_term(it2, 2);
 end
 
-x = 1:qsize; 
+x = 1:bwsize; 
 figure("Name", "BRO")
 bd = bar(x, ddados);
 %hold on
