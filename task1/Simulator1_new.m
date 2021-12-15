@@ -1,4 +1,4 @@
-function [PL , APD, APD_64, APD_110, APD_1518 , MPD , TT] = Simulator1(lambda,C,f,P)
+function [PL , APD, APD_64, APD_110, APD_1518 , MPD , TT] = Simulator1_new(lambda,C,f,P)
 % INPUT PARAMETERS:
 %  lambda - packet rate (packets/sec) 
 %  C      - link bandwidth (Mbps)
@@ -7,8 +7,11 @@ function [PL , APD, APD_64, APD_110, APD_1518 , MPD , TT] = Simulator1(lambda,C,
 % OUTPUT PARAMETERS:
 %  PL   - packet loss (%)
 %  APD  - average packet delay (milliseconds)
+%  APD_64  - average packet delay for 64 byte packets (milliseconds)
+%  APD_110 - average packet delay for 110 byte packets  (milliseconds)
+%  APD_1518 - average packet delay for 1518 byte packets (milliseconds) 
 %  MPD  - maximum packet delay (milliseconds)
-%  TT   - transmitted throughput (Mbps)
+%  TT   - transmitted throughput (Mbps) 
 
 %Events:
 ARRIVAL= 0;       % Arrival of a packet            

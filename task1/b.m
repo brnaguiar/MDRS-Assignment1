@@ -52,17 +52,32 @@ for it2 = 1:qsize
 end
 
 x = 1:qsize; 
-figure("Name", "BRO")
-bd = bar(x, ddados);
-%hold on
-figure
-bl = bar(x, ldados);
 
-%hold on
-%er = errorbar(x, dados, err);
-%er.Color = [0 0 0];
-%er.LineStyle = 'none'; 
-%hold off
+figure('Name', 'Average Packet Delay')
+bd = bar(x, ddados);
+xlabel('Queue size (bytes)')
+set(gca, 'xticklabel',f)
+ylabel('Avg. Packet Delay (ms)')
+
+hold on
+er = errorbar(x, ddados, derr);
+er.Color = [0 0 0];
+er.LineStyle = 'none';
+hold off
+
+figure('Name', 'Average Packet Loss')
+bl = bar(x, ldados);
+xlabel('Queue size (bytes)')
+set(gca, 'xticklabel',f)
+ylabel('Avg. Packet Loss (%)')
+
+hold on
+er = errorbar(x, ldados, lerr);
+er.Color = [0 0 0];
+er.LineStyle = 'none';
+hold off
+
+
 
 
 

@@ -1,0 +1,51 @@
+C = 10*10^6;
+
+size_VoIP = 110:130;
+prob_VoIP = zeros(1, 130);
+prob_VoIP(size_VoIP) = 1/length(size_VoIP) ;    
+
+n_flows = 10;
+
+size_data = 64:1518 ;
+prob_data = zeros(1,1518) ;
+prob_data(size_data) = (1 - 0.19 - 0.23 - 0.17) / ((length(size_data) - 3)) ;
+prob_data(64) = 0.19 ;
+prob_data(110) = 0.23 ;
+prob_data(1518) = 0.17 ; 
+
+avgPacketSizeVoIP = sum(prob_VoIP(size_VoIP).*size_VoIP); % 
+avgPacketSizeData = sum(prob_data(size_data).*size_data); % 
+
+lambda_data = 1500; %C/(avgPacketSizeData*8)
+
+media_pcktarrivals = ((16/1000)+(24/1000))/2;
+lambda_VoIP = (1/media_pcktarrivals)*n_flows;
+%lambda_VoIP = ;C/(avgPacketSizeVoIP*8)
+
+ES_data = (avgPacketSizeData*8)/C ;%
+ES_VoIP = (avgPacketSizeVoIP*8)/C ;%
+
+ES2_data = (ES_data^2*2); %;sum(prob_data(size_data).*(((size_data*8)/C).^2)) 
+ES2_VoIP = (ES_VoIP^2//2); %; sum(prob_VoIP(size_VoIP).*(((size_VoIP*8)/C).^2)) 
+
+%ES2_VoIP = (avgPacketSizeVoIP_2*8)/C;  
+%ES2_data = (avgPacketSizeData_2*8)/C ; 
+
+% ---------------- avgPacketSizeD 
+
+
+W_VoIP = lambda_data*ES2_data + (lambda_VoIP*ES2_VoIP); 
+W_VoIP = W_VoIP / (2 *(1-lambda_VoIP*ES_VoIP)); %;
+W_VoIP = (W_VoIP + ES_VoIP)*1000      
+
+W_data = lambda_data*ES2_data + lambda_VoIP*ES2_VoIP;
+W_data = W_data / (2*(1-lambda_VoIP*ES_VoIP)*(1-lambda_VoIP*ES_VoIP-lambda_data*ES_data)) ; %;  ; 
+W_data = (W_data + ES_data)*1000  
+
+
+
+
+
+
+%20 ms
+%960 bits

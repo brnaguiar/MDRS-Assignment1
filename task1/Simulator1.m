@@ -49,7 +49,7 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
             EventList = [EventList; ARRIVAL, tmp, GeneratePacketSize(), tmp];
             if STATE==0
                 STATE= 1;
-                EventList = [EventList; DEPARTURE, Clock + 8*PacketSize/(C*10^6), PacketSize, Clock];
+                EventList = [EventList; DEPARTURE, Clock + 8*PacketSize/(C*10^6), PacketSize, Clock];  
             else
                 if QUEUEOCCUPATION + PacketSize <= f
                     QUEUE= [QUEUE;PacketSize , Clock];
@@ -70,7 +70,7 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
                 QUEUEOCCUPATION= QUEUEOCCUPATION - QUEUE(1,1);
                 QUEUE(1,:)= [];
             else  
-                STATE= 0;
+                STATE= 0;   
             end
     end
 end

@@ -51,7 +51,7 @@ x = 1:bwsize;
 figure("Name", "Average Packet Delay")
 bd = bar(x, dados);
 xlabel('Link bandwidth (Mbps)')  
-set(gca,'xticklabel',C) 
+set(gca,'xticklabel',C)  
 ylabel('Avg. Packet Delay (ms)')
 
 hold on
@@ -59,6 +59,7 @@ er = errorbar(x, dados, err);
 er.Color = [0 0 0];
 er.LineStyle = 'none'; 
 hold off     
+
 
 
 

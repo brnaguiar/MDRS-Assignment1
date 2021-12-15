@@ -45,7 +45,7 @@ end
 
 x = 1:lambda_len;
 figure('Name', 'Average Packet Delay')
-bar(x, dados)
+bar(x, dados) 
 xlabel('Packet rate (p/s)')
 set(gca,'xticklabel',lambda) 
 ylabel('Avg. Packet Delay (ms)')

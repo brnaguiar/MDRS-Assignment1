@@ -15,12 +15,11 @@ sim_output = zeros(N,7,size);
 
 for i= 1:size 
     for j = 1:N
-        [per(j,1),per(j,2),per(j,3),per(j,4), per(j, 5), per(j, 6), per(j, 7)] = Simulator1_new(lambda, C(i), f, P);
+        [per(j,1),per(j,2),per(j,3),per(j,4), per(j, 5), per(j, 6), per(j, 7)] =...
+            Simulator1_new(lambda, C(i), f, P);
     end
     sim_output(:, :, i) = per(:, :);
 end
-
-sim_output 
 
 %%
 
@@ -40,37 +39,62 @@ for it = 1:size
     av_pktd1518_term(it,:) = [media(:, 5, it), term(:, 5,it)]; 
 end
 
-av_pktd64_term %
-av_pktd110_term
-av_pktd1518_term
-
-
-
 %%
-ddados = zeros(1, qsize); 
-derr = zeros(1, qsize);
-ldados = zeros(1, qsize);
-lerr = zeros(1, qsize);
+dados64 = zeros(1, size); 
+derr64 = zeros(1, size);
+dados110 = zeros(1, size);
+derr110 = zeros(1, size);
+dados1518 = zeros(1, size);
+derr1518 = zeros(1, size);   
 
-for it2 = 1:qsize
-    ddados(1, it2) = av_pktd_term(it2, 1);
-    derr(1, it2) = av_pktd_term(it2, 2);
-    ldados(1, it2) = av_pktl_term(it2, 1);
-    lerr(1, it2) = av_pktl_term(it2, 2);
-end
+for it2 = 1:size  
+    dados64(1, it2) = av_pktd64_term(it2, 1);
+    derr64(1, it2) = av_pktd64_term(it2, 2);      
+    
+    dados110(1, it2) = av_pktd110_term(it2, 1);
+    derr110(1, it2) = av_pktd110_term(it2, 2);    
 
-x = 1:qsize; 
-figure("Name", "BRO")
-bd = bar(x, ddados);
-%hold on
-figure
-bl = bar(x, ldados);
+    dados1518(1, it2) = av_pktd1518_term(it2, 1);
+    derr1518(1, it2) = av_pktd1518_term(it2, 2);  
 
-%hold on
-%er = errorbar(x, dados, err);
-%er.Color = [0 0 0];
-%er.LineStyle = 'none'; 
-%hold off
+end 
 
+x = 1:size; 
+figure("Name", "Average 64Byte-Packet Delay")      
+bd64 = bar(x, dados64);
+xlabel('Link bandwidth (Mbps )') 
+set(gca,'xticklabel',C) 
+ylabel('Avg. Packet Delay (ms)')      
 
 
+hold on
+er = errorbar(x, dados64, derr64);
+er.Color = [0 0 0];
+er.LineStyle = 'none'; 
+hold off 
+
+x = 1:size;
+figure('Name', 'Average 110Byte-Packet Delay')
+bar(x, dados110)
+xlabel('Link Bandwidth (Mbps)')
+set(gca,'xticklabel',C)    
+ylabel('Avg. Packet Delay (ms)') 
+
+hold on
+er = errorbar(x, dados110, derr110); 
+er.Color = [0 0 0];
+er.LineStyle = 'none'; 
+hold off 
+
+x = 1:size;
+figure('Name', 'Average 1518Byte-Packet Delay')
+bar(x, dados1518) 
+xlabel('Link Bandwith (Mbps)')   
+set(gca,'xticklabel',C)   
+ylabel('Avg. Packet Delay (ms)')  
+
+hold on
+er = errorbar(x, dados1518, derr1518); 
+er.Color = [0 0 0];
+er.LineStyle = 'none'; 
+hold off 
